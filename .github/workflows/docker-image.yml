@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: ./run.sh #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: cd sample-app && ./run.sh #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
