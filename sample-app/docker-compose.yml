@@ -17,6 +17,9 @@ services:
       DATABASE_URL: jdbc:postgresql://database:5432/postgres
       DATABASE_PLATFORM: postgres
       SECURE_SERVICE_ADDRESS: http://secure-service/api
+      REDIS_HOST: cache
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     volumes:
       - type: volume
         source: trusted-orchestrator-volume
@@ -24,6 +27,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
+      cache:
+        condition: service_healthy
       vault-server:
         condition: service_healthy
       trusted-orchestrator:
@@ -45,6 +50,8 @@ services:
       DATABASE_PORT: 5432
       API_KEY_PATH: kv-v2/api-key
       API_KEY_FIELD: api-key-field
+      REDIS_KEY_PATH: kv-v2/redis-key
+      REDIS_KEY_FIELD: redis-key-field
     ports:
       - "8200:8200"
     depends_on:
@@ -80,6 +87,20 @@ services:
       interval: 1s
       timeout: 1s
       retries: 30
+      
+
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    healthcheck:
+       test: ["CMD", "redis-cli","ping"]      
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - cache:/data
+
+
 
   # a simulated 3rd party service that requires a specific header to get a 200 response
   secure-service:
@@ -108,4 +129,6 @@ services:
         condition: service_healthy
 
 volumes:
+  cache:
+    driver: local
   trusted-orchestrator-volume:
