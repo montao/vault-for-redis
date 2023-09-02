@@ -1,5 +1,3 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
 
 FROM hashicorp/vault
 #:1.9.1
@@ -9,8 +7,8 @@ FROM hashicorp/vault
 RUN apk add --no-cache jq
 
 # Add our preformatted policies
-COPY dev-policy.hcl                   /vault/config/dev-policy.hcl
-COPY trusted-orchestrator-policy.hcl  /vault/config/trusted-orchestrator-policy.hcl
+# COPY dev-policy.hcl                   /vault/config/dev-policy.hcl
+# COPY trusted-orchestrator-policy.hcl  /vault/config/trusted-orchestrator-policy.hcl
 
 COPY entrypoint.sh                    /vault/entrypoint.sh
 
