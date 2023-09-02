@@ -1,14 +1,8 @@
 
 FROM hashicorp/vault
-#:1.9.1
 
-# Add jq to make scripting the calls a bit easier
-# ref: https://stedolan.github.io/jq/
 RUN apk add --no-cache jq
 
-# Add our preformatted policies
-# COPY dev-policy.hcl                   /vault/config/dev-policy.hcl
-# COPY trusted-orchestrator-policy.hcl  /vault/config/trusted-orchestrator-policy.hcl
 
 COPY entrypoint.sh                    /vault/entrypoint.sh
 
