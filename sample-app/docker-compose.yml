@@ -6,6 +6,7 @@ services:
     cap_add:
       - IPC_LOCK
     environment:
+      VAULT_ADDR: http://127.0.0.1:8200
       VAULT_DEV_ROOT_TOKEN_ID: root
       APPROLE_ROLE_ID: demo-web-app
       ORCHESTRATOR_TOKEN: insecure-token

@@ -12,11 +12,11 @@ docker compose up -d --build --quiet-pull
 trap 'docker compose down --volumes' EXIT
 
 # TEST 1: POST /payments (static secrets)
-output1=$(curl --silent --request POST "${APP_ADDRESS}/payments")
+output1=$(docker exec sample-app-cache-1 redis-cli AUTH wrongpass)
 
 echo "[TEST 1]: output: $output1"
 
-if [ "${output1}" != '{"message":"hello world!"}' ]
+if [ "${output1}" != 'WRONGPASS invalid username-password pair or user is disabled.' ]
 then
     echo "[TEST 1]: FAILED: unexpected output"
     exit 1
@@ -24,12 +24,12 @@ else
     echo "[TEST 1]: OK"
 fi
 
-# TEST 2: GET /products (dynamic secrets)
-output2=$(curl --silent --request GET "${APP_ADDRESS}/products")
+# TEST 2: rotate redis 
+output2=$(docker exec sample-app-vault-server-1 vault write -force database/rotate-root/my-redis-database)
 
 echo "[TEST 2]: output: $output2"
 
-if [ "${output2}" != '[{"id":1,"name":"Rustic Webcam"},{"id":2,"name":"Haunted Coloring Book"}]' ]
+if [ "${output2}" != 'Success! Data written to: database/rotate-root/my-redis-database' ]
 then
     echo "[TEST 2]: FAILED: unexpected output"
     exit 1
