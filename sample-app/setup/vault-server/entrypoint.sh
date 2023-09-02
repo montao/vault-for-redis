@@ -29,12 +29,6 @@ vault write database/roles/my-all-role \
     default_ttl="15m" \
     max_ttl="1h"
 
-#vault write database/roles/my-readonly-role \
-##    db_name="my-redis-database" \
- #   username="readonly" \
- #   creation_statements='["~readonly", "+@read"]' \
- #   rotation_period=5m
-
 # this container is now healthy
 touch /tmp/healthy
 
