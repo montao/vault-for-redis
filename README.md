@@ -66,3 +66,8 @@ vault write database/config/my-redis-database \
 - Deployment target: Docker compose. The advantage is the simplicity and that it is available on many systems and can be run from the CI/CD such as GHA and a local environment. 
 
 - Redis is portable and easy to start. A significant drawback is that usernames are not customizable with the Vault Redis plugin. Redis uses a permissions model that is not simple, and the documentation and syntax of the ACLs are not good enough. Several third-party open-source plugin implementations with different syntaxes can get mixed up and cause errors. 
+
+#### Future work
+Use Terraform. Deploy to a cloud provider e.g., AWS, GCP, or Azure. Discuss the benefit of using e.g., Kubernetes or Fargate instead of plain Docker. Discuss if a real programming language is better than (ba)sh, and if new code should be written in (ba)sh at all.
+
+
