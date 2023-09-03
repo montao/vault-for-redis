@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+
+  vault-server:
+    build: ./setup/vault-server/
+    cap_add:
+      - IPC_LOCK
+    environment:
+      VAULT_ADDR: http://127.0.0.1:8200
+      VAULT_DEV_ROOT_TOKEN_ID: root
+    ports:
+      - "8200:8200"
+    depends_on:
+      cache:
+        condition: service_healthy
+
+  cache:
+    image: redis #/redis-stack:6.2.6-v7
+    restart: always
+    environment:
+      REDIS_ARGS: "--requirepass pass --user user" 
+    ports:
+      - "6379:6379"
+    healthcheck:
+       test: ["CMD", "redis-cli", "ping"]
+    volumes:
+      - cache:/data
+
+  # a dummy service which blocks "docker compose up -d" from returning until all services are up & healthy
+  healthy:
+    image: alpine:latest
+    command: [ "echo", "all services are up & healthy" ]
+    depends_on:
+      vault-server:
+        condition: service_healthy
+
+volumes:
+  cache:
+#    driver: local
+  trusted-orchestrator-volume:
