@@ -50,7 +50,7 @@ What matters to me as a software professional are practices and principles such 
 #### Practical aspects 
 The easiest way to run it and test it is by code pipeline with the GitHub action (but that requires a GitHub actions environment). What the project does and how it runs should be self-explanatory or at least cause minimal misunderstandings or confusion with as little effort as possible. The project should be 100% complete since the last 1% could take 90% of the effort. This time, I found that the permissions in Redis took longer than expected to get right.  
 
-Note the line host: cache (not host: localhost) for the Redis host:
+Note the line ``host="cache"`` (not ``host="localhost"``) for the Redis host:
 ```
 vault write database/config/my-redis-database \
   plugin_name="redis-database-plugin" \
