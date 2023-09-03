@@ -7,10 +7,10 @@ Users and services need the password stored in Vault to authenticate to your Red
 Vault is a secrets manager that can safely store secrets needed by infrastructure services and applications (e.g., database credentials) and even inject it into other services.
 
 ### Usage
-Start a vault-dev instance and a redis instance by running ``sample-app/run.sh``.  
+Start a vault-dev instance and a redis instance by running ``app/run.sh``.  
 View logs by ``docker-compose logs -f``.  
 The log should say ``Success! Data are written to: database/rotate-root/my-redis-database``.  
-Run the tests ``sample-app/run-test.sh``.  
+Run the tests ``app/run-test.sh``.  
 
 
 #### Discussion
