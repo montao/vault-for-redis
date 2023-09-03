@@ -5,6 +5,7 @@ There is a need to safely store secrets for infrastructure services and applicat
 - Deploy a containerized instance of the Vault secrets manager;
 - store some credentials; and
 - inject them into the Redis’ AUTH of a containerized Redis instance
+  
 Users and services will then need the password stored in Vault to authenticate to Redis.
 
 ### Usage
