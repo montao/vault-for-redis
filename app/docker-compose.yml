@@ -15,10 +15,8 @@ services:
         condition: service_healthy
 
   cache:
-    image: redis #/redis-stack:6.2.6-v7
+    image: redis 
     restart: always
-    environment:
-      REDIS_ARGS: "--requirepass pass --user user" 
     ports:
       - "6379:6379"
     healthcheck:
@@ -36,5 +34,3 @@ services:
 
 volumes:
   cache:
-#    driver: local
-  trusted-orchestrator-volume:
