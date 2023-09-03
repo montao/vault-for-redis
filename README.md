@@ -11,7 +11,38 @@ Start a vault-dev instance and a redis instance by running ``app/run.sh``.
 View logs by ``docker-compose logs -f``.  
 The log should say ``Success! Data are written to: database/rotate-root/my-redis-database``.  
 Run the tests ``app/run-test.sh``.  
-
+A successful test should print output similar to the following.  
+```
+% ./run-tests.sh
+[+] Running 5/5
+ ✔ Network app_default           Created                                                           0.0s 
+ ✔ Volume "app_cache"            Created                                                           0.0s 
+ ✔ Container app-cache-1         Healthy                                                          30.8s 
+ ✔ Container app-vault-server-1  Healthy                                                          37.4s 
+ ✔ Container app-healthy-1       Started                                                          37.5s 
+[TEST 1]: output: WRONGPASS invalid username-password pair or user is disabled.
+[TEST 1]: OK
+[TEST 2]: output: Success! Data written to: database/rotate-root/my-redis-database
+[TEST 2]: OK
+[TEST 3]: output: Key                Value
+---                -----
+lease_id           database/creds/my-dynamic-role/oO0363BMdRHiyr04Q65PaokB
+lease_duration     15m
+lease_renewable    true
+password           yjt-vYDIDj7cCoX6siEX
+username           V_TOKEN_MY-DYNAMIC-ROLE_0X6OLNAVIS0ITQUZWNNL_1693722342
+[TEST 4]: username: V_TOKEN_MY-DYNAMIC-ROLE_JS5YBGHTRIQVKL5TYUCK_1693722343
+Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
+OK
+Warning: Using a password with '-a' or '-u' option on the command line interface may not be safe.
+TESTED BY V_TOKEN_MY-ALL-ROLE_116H9CTTU2GVUVHK20VE_1693722343 SUCCESSFULLY!
+[+] Running 5/5
+ ✔ Container app-healthy-1       Removed                                                           0.0s 
+ ✔ Container app-vault-server-1  Removed                                                           0.1s 
+ ✔ Container app-cache-1         Removed                                                           0.1s 
+ ✔ Volume app_cache              Removed                                                           0.0s 
+ ✔ Network app_default           Removed                                                           0.0s 
+```
 
 #### Discussion
 What matters to me as a software professional are practices and principles such as simplicity, correctness (sometimes simplicity and correctness are a trade-off), testability, clean code with minimal verifiable self-contained examples for demonstration purposes, and the ideas are as easy to explain and communicate. 
