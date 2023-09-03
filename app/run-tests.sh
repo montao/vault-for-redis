@@ -51,6 +51,5 @@ while read -r id val; do
     fi
 done < <(docker exec sample-app-vault-server-1 vault read database/creds/my-all-role | grep -iE "username|password")
 
-
 docker exec sample-app-cache-1 redis-cli --user $var1 --pass $var2 SET k42 "TESTED BY $var1 SUCCESSFULLY!"
 docker exec sample-app-cache-1 redis-cli --user $var1 --pass $var2 GET k42 
