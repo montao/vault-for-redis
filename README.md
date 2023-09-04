@@ -6,6 +6,22 @@ The purpose of this project is to
 Users and services need the password stored in Vault to authenticate to your Redis.)
 Vault is a secrets manager that can safely store secrets needed by infrastructure services and applications (e.g., database credentials) and even inject it into other services.
 
+## Overview of steps
+
+1/ As deployment target: I’ve chosen docker compose. The advantages are its relative simplicity and availability for CI/CD pipeline testing. The docker engine can be run locally, and the script is provided to start two docker containers, one for Redis and one for Vault. 
+
+2/ As a service to inject the secrets to, I’ve chosen Redis. The 
+- What are the benefits/shortcomings of your service’s security parameter?
+
+3/ The Vault instance can be started from the script named run.sh in dev mode. 
+
+4/ When the instance is started, it generates credentials. This script is named entrypoint.sh
+
+5/ The credentials are injected into Redis and are updateable in Vault. The test is named ./run-tests.sh 
+
+7/ The PKI engine is initiated in entrypoint.sh, but is incomplete at this time of writing.
+
+
 ### Usage
 Start a vault-dev instance and a redis instance by running ``app/run.sh``.  
 View logs by ``docker-compose logs -f``.  
