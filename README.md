@@ -10,8 +10,7 @@ Vault is a secrets manager that can safely store secrets needed by infrastructur
 
 1/ As deployment target: I’ve chosen docker compose. The advantages are its relative simplicity and availability for CI/CD pipeline testing. The docker engine can be run locally, and the script is provided to start two docker containers, one for Redis and one for Vault. 
 
-2/ As a service to inject the secrets to, I’ve chosen Redis. The 
-- What are the benefits/shortcomings of your service’s security parameter?
+2/ As a service to inject the secrets to, I’ve chosen Redis. The advantages of Redis is its relatively high level of capability of security settings with ACLs, compared to a more simplistic cache (e.g. memcache) but the drawback is that Redis becomes more complicated to configure compared to, for example, memcached or ElasticSearch. 
 
 3/ The Vault instance can be started from the script named run.sh in dev mode. 
 
