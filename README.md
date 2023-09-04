@@ -10,15 +10,15 @@ Vault is a secrets manager that can safely store secrets needed by infrastructur
 
 1/ As deployment target: I’ve chosen docker compose. The advantages are its relative simplicity and availability for CI/CD pipeline testing. The docker engine can be run locally, and the script is provided to start two docker containers, one for Redis and one for Vault. 
 
-2/ As a service to inject the secrets to, I’ve chosen Redis. The advantages of Redis is its relatively high level of capability of security settings with ACLs, compared to a more simplistic cache (e.g. memcache) but the drawback is that Redis becomes more complicated to configure compared to, for example, memcached or ElasticSearch. 
+2/ As a service to inject secrets, I’ve chosen Redis. The advantage of Redis is its relatively high capability of security settings with ACLs, compared to a more simplistic cache (e.g., Memcached). Still, the drawback is that Redis becomes more complicated to configure compared to, for example, Memcached or ElasticSearch. 
 
-3/ The Vault instance can be started from the script named run.sh in dev mode. 
+3/ The Vault instance can be started from the script ``./app/run.sh`` in dev mode. 
 
-4/ When the instance is started, it generates credentials. This script is named entrypoint.sh
+4/ When the instance is started, it generates credentials. This script is named ``entrypoint.sh``
 
-5/ The credentials are injected into Redis and are updateable in Vault. The test is named ./run-tests.sh 
+5/ The credentials are injected into Redis and are updateable in Vault. The test is named ``./app/run-tests.sh`` 
 
-7/ The PKI engine is initiated in entrypoint.sh, but is incomplete at this time of writing.
+7/ The PKI engine is initiated in ``entrypoint.sh``, but is incomplete at this time of writing.
 
 
 ### Usage
@@ -83,6 +83,6 @@ vault write database/config/my-redis-database \
 - Redis is portable and easy to start. A significant drawback is that usernames are not customizable with the Vault Redis plugin. Redis uses a permissions model that is not simple, and the documentation and syntax of the ACLs are not good enough. Several third-party open-source plugin implementations with different syntaxes can get mixed up and cause errors. 
 
 #### Future work
-Use Terraform. Deploy to a cloud provider e.g., AWS, GCP, or Azure. Discuss the benefit of using e.g., Kubernetes or Fargate instead of plain Docker. Discuss if a real programming language is better than (ba)sh, and if new code should be written in (ba)sh at all.
+Complete the PKI part. Understand the benefit of using, e.g., Kubernetes or Fargate instead of plain Docker. Discuss if a real programming language is better than (ba)sh, and if new code should be written in (ba)sh.
 
 
