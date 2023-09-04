@@ -1,4 +1,4 @@
-## hello-vault-redis
+## vault-for-redis
 The purpose of this project is to
 - Deploy a Vault instance;
 - store some credentials; and
