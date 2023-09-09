@@ -3,8 +3,6 @@ The purpose of this project is to
 - Deploy a Vault instance;
 - store some credentials; and
 - inject them into Redis’ AUTH. 
-Users and services need the password stored in Vault to authenticate to your Redis.)
-Vault is a secrets manager that can safely store secrets needed by infrastructure services and applications (e.g., database credentials) and even inject it into other services.
 
 ## Overview of steps
 
